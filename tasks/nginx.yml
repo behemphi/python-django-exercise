@@ -1,0 +1,10 @@
+---
+- name: install nginx
+  apt: 
+    name=nginx 
+    state=present
+# Remove nginx install cruft
+- name: remove default virtual host
+  file: 
+    path=/etc/nginx/sites-available/default 
+    state=absent 

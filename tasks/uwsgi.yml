@@ -1,0 +1,26 @@
+---
+# configure the application server 
+
+# create a harper user as a system owner for the harper application.  
+- name: create a user for harper to run as
+  user: 
+    append: yes  
+    group: www-data 
+    groups: sudo
+    home: /opt/harper
+    name: harper
+
+# now create the virutal environment harper will run in.
+- name: create harper virtualenv 
+  pip:
+    requirements: /opt/harper/requirements.txt
+    virtualenv: /var/www/harper
+    virtualenv_python: python2.7
+
+# lay down the uwsgi config file in the project. 
+# TODO: Would like to figure out a better place to put this
+- name: create uwsgi configuration file specific to the harper process
+  template:
+    src: opt-harper-uwsgi-ini.j2
+    dest: /opt/harper/uwsgi.ini
+    mode: 775

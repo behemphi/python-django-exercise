@@ -1,0 +1,1 @@
+{"virtualbox":{"/opt/harper":{"guestpath":"/opt/harper","hostpath":"/Users/boyd.hemphill/code/python-django-excercise/harper","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/boyd.hemphill/code/python-django-excercise","disabled":false,"__vagrantfile":true}}}

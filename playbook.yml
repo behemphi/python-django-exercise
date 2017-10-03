@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  vars:
+    # This must be set to work with Ubuntu 16.04 because Python2 is not
+    # installed by default.
+    ansible_python_interpreter: /usr/bin/python3
+    harper_uwsgi_log_file: /var/log/uwsgi/harper-uwgsi.log
+    harper_uwsgi_pid: /tmp/harper-uwsgi.pid
+    harper_uwsgi_socket: /tmp/harper-uwsgi.sock
+    harper_uwsgi_stats_socket: /tmp/harper-uwsgi-stats.sock
+  tasks:
+    - name: update the apt cache for security patches
+      apt: update_cache=yes
+    - include: tasks/base.yml
+    - include: tasks/nginx.yml
+    - include: tasks/uwsgi.yml
